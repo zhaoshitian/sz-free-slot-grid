@@ -1,0 +1,11 @@
+_ > nanoagent.plugin.v0001.ProductConfig:
+tagline: "Free Slot Grid with a checkable result"
+summary: "Find every grid-aligned meeting slot that fits a daily window and avoids all blocked intervals."
+highlights:
+  - "Works offline with structured inputs"
+  - "Checks the saved artifact as well as the returned result"
+  - "Rejects invalid inputs and protects existing files"
+steps:
+  - "Provide the task data and a new output filename"
+  - "Run the task to generate its ordered results"
+  - "Review the verified result and saved JSON artifact"
