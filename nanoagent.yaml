@@ -1,0 +1,27 @@
+_ > nanoagent.plugin.v0001.ManifestConfig:
+id: sz-free-slot-grid
+name: Free Slot Grid
+version: 1.0.0
+status: ready
+spec: nanoagent.plugin/v0001
+
+runtime > nanoagent.plugin.v0001.RuntimeConfig:
+  type: mcp_stdio
+  command: [uv, run, --frozen, python, -m, plugin]
+
+permissions > nanoagent.plugin.v0001.PermissionsConfig:
+  network > nanoagent.plugin.v0001.NetworkConfig:
+    hosts: []
+  filesystem > nanoagent.plugin.v0001.FilesystemConfig:
+    write: [workspace]
+
+tools > dict[contract.Tool, nanoagent.plugin.v0001.ToolConfig]:
+  find_slots:
+    description: "Find every grid-aligned meeting slot that fits a daily window and avoids all blocked intervals."
+tasks > dict[contract.Task, nanoagent.plugin.v0001.TaskConfig]:
+  find-slots:
+    description: "Find every grid-aligned meeting slot that fits a daily window and avoids all blocked intervals."
+    runner: tool
+    tools: [find_slots]
+    reference: null
+    instructions: "Use integer minutes in [0,1440]. All intervals are half-open; zero-width blocks are empty. Candidate starts are window_start+k*step, k>=0. Return every candidate fully within the window with no blocked overlap, in ascending order. total counts rows. Save canonical JSON with records and total at destination and return the same rows and total with its path."
